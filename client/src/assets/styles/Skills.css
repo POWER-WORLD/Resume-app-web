@@ -54,7 +54,12 @@
   align-items: center;
   min-height: 40vh;
 }
-
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 40vh;
+}
 .error-message {
   color: #ffb4b4;
   margin-bottom: 1rem;

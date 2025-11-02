@@ -12,12 +12,13 @@ const statsRoutes = require("./routes/statistics_route");
 const app = express();
 app.use(cors({
   origin: [
-    "https://resume-app-frontend-production.up.railway.app", // ✅ your frontend domain
-    "http://localhost:5173" // optional for local dev
+    "https://resume-app-web-production-41d1.up.railway.app", // ✅ Correct frontend domain
+    "http://localhost:5173" // Optional: local dev
   ],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
+
 app.use(express.json());
 
 const PORT = port || 5000; // ✅ Railway will inject its own port
