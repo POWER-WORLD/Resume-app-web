@@ -13,7 +13,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-
+const PORT = port || 5000; // ✅ Railway will inject its own port
+const HOST = "0.0.0.0"; // ✅ Accept external requests
 
 //connect to database
 ConnectToMongoDB( mongoUrl , dbName);
@@ -30,6 +31,6 @@ app.use("/api/stats", statsRoutes);
 
 
 // start server
-app.listen(port, () => {
-  console.log(`🚀 Server running on http://localhost:${port}`);
+app.listen(PORT, HOST, () => {
+  console.log(`🚀 Server running on http://${HOST}:${PORT}`);
 });
