@@ -138,3 +138,24 @@
   outline: 2px solid rgba(66, 189, 223, 0.18);
   outline-offset: 2px;
 }
+
+/* User area shown under logo */
+.nav-user-area{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom: 12px;
+  justify-content: center;
+}
+.nav-user{
+  color: #bff3ff;
+  font-weight:600;
+}
+.logout-inline{
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.06);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}

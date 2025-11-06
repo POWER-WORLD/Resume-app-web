@@ -3,7 +3,10 @@ const Experience = require("../models/experience_schema");
 // ➕ Create new experience
 exports.createExperience = async (req, res) => {
     try {
-        const experience = new Experience(req.body);
+        const experience = new Experience({
+            ...req.body,
+            userId: req.userId // from auth middleware
+        });
         await experience.save();
         return res.status(201).json({
             success: true,
@@ -24,7 +27,9 @@ exports.getExperiences = async (req, res) => {
     try {
         const { isCurrent } = req.query;
 
-        const filter = {};
+        const filter = {
+            userId: req.userId // only show user's own experiences
+        };
 
         // 🎯 Filter by current/past experiences
         if (isCurrent === "true") {

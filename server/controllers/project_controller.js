@@ -3,7 +3,10 @@ const Project = require("../models/project_schema");
 // Create new project
 exports.createProject = async (req, res) => {
     try {
-        const projects = new Project(req.body);
+        const projects = new Project({
+            ...req.body,
+            userId: req.userId // from auth middleware
+        });
         await projects.save();
         return res.status(201).json({
             success: true,
@@ -24,7 +27,9 @@ exports.getProjects = async (req, res) => {
     try {
         const { featured, status, technology } = req.query;
 
-        const filter = {};
+        const filter = {
+            userId: req.userId // only show user's own projects
+        };
 
         // 🎯 Filter by featured (true/false)
         if (featured === "true") filter.featured = true;

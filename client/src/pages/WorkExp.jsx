@@ -4,6 +4,7 @@ import ExpForm from "../components/ExpForm";
 import "../assets/styles/WorkExp.css";
 import Spinner from "../components/Spinner";
 import { getAllExperiences, createExperience, updateExperience, deleteExperience } from "../services/expService";
+import { useAuth } from "../context/AuthContext";
 
 function Experience() {
   const [experiences, setExperiences] = useState([]);
@@ -12,9 +13,16 @@ function Experience() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const { user } = useAuth();
+
   useEffect(() => {
+    if (!user) {
+      setLoading(false);
+      setExperiences([]);
+      return;
+    }
     fetchExperiences();
-  }, []);
+  }, [user]);
 
   const fetchExperiences = async () => {
     try {
@@ -98,6 +106,11 @@ function Experience() {
       {loading ? (
         <div className="loading-spinner">
           <Spinner />
+        </div>
+      ) : !user ? (
+        <div className="no-auth">
+          <p>Please sign in to view your experiences.</p>
+          <button onClick={() => { try { localStorage.removeItem('seenAnimatedLogin'); } catch(e){}; window.location.href = '/'; }}>Sign in</button>
         </div>
       ) : (
         <div className="experience-grid">

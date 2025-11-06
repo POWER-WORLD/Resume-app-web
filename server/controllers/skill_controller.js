@@ -3,7 +3,10 @@ const Skill = require("../models/skill_schema");
 // ➕ Create a new skill
 exports.createSkill = async (req, res) => {
     try {
-        const skill = new Skill(req.body);
+        const skill = new Skill({
+            ...req.body,
+            userId: req.userId // from auth middleware
+        });
         await skill.save();
         return res.status(201).json({
             success: true,
@@ -24,7 +27,9 @@ exports.getSkills = async (req, res) => {
     try {
         const { category, proficiency, minYears, maxYears } = req.query;
 
-        const filter = {};
+        const filter = {
+            userId: req.userId // only show user's own skills
+        };
 
         // 🎯 Exact or partial match for category
         if (category) {

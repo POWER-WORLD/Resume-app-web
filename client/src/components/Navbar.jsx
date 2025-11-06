@@ -1,12 +1,21 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../assets/images/nav_logo.png";
 import "../assets/styles/Navbar.css";
+import { useAuth } from "../context/AuthContext";
 
 function Navbar({ isOpen = false, onClose = () => {} }) {
   // close sidebar after navigating on small screens
   const handleNavClick = () => {
     if (window.innerWidth < 1025) onClose();
+  };
+
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
   };
 
   return (
@@ -21,6 +30,17 @@ function Navbar({ isOpen = false, onClose = () => {} }) {
           ✕
         </button>
       </div>
+
+      {/* user greeting + logout shown immediately after logo */}
+      <div className="nav-user-area">
+        {user ? (
+          <>
+            <span className="nav-user">Hello, {user.fullName}</span>
+            <button className="btn btn-primary logout-inline" onClick={handleLogout}>Logout</button>
+          </>
+        ) : null}
+      </div>
+
       <ul className="nav-links">
         <li>
           <NavLink to="/" end onClick={handleNavClick}>

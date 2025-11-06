@@ -4,6 +4,7 @@ import ProjectCard from "../components/ProjectCard";
 import ProjectForm from "../components/ProjectForm";
 import Spinner from "../components/Spinner";
 import "../assets/styles/Projects.css";
+import { useAuth } from "../context/AuthContext";
 
 function Projects() {
   const [projects, setProjects] = useState([]);
@@ -12,10 +13,19 @@ function Projects() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const { user } = useAuth();
+
   // Memoized fetchProjects function
   const fetchProjects = useCallback(async () => {
     try {
       setLoading(true);
+      // if not authenticated, don't call protected API
+      if (!user) {
+        setProjects([]);
+        setError(null);
+        return;
+      }
+
       const response = await getAllProjects();
 
       if (!response || !response.data) {
@@ -36,7 +46,7 @@ function Projects() {
   // Add useEffect to fetch projects on component mount
   useEffect(() => {
     fetchProjects();
-  }, [fetchProjects]);
+  }, [fetchProjects, user]);
 
   const handleAddClick = () => {
     setEditProject(null);
@@ -101,7 +111,12 @@ function Projects() {
         </div>
       )}
 
-      {loading ? (
+      {!user && !loading ? (
+        <div className="no-auth">
+          <p>Please sign in to view your projects.</p>
+          <button onClick={() => { try { localStorage.removeItem('seenAnimatedLogin'); } catch(e){}; window.location.href = '/'; }}>Sign in</button>
+        </div>
+      ) : loading ? (
         <div className="spinner-container">
           <Spinner />
         </div>

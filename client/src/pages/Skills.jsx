@@ -4,6 +4,7 @@ import SkillForm from "../components/SkillForm";
 import "../assets/styles/Skills.css";
 import Spinner from "../components/Spinner";
 import { getAllSkills, createSkill, updateSkill, deleteSkill } from "../services/skillService";
+import { useAuth } from "../context/AuthContext";
 
 function Skills() {
   const [skills, setSkills] = useState([]);
@@ -12,9 +13,17 @@ function Skills() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const { user } = useAuth();
+
   useEffect(() => {
+    // only fetch if authenticated
+    if (!user) {
+      setLoading(false);
+      setSkills([]);
+      return;
+    }
     fetchSkills();
-  }, []);
+  }, [user]);
 
   const fetchSkills = async () => {
     try {
@@ -92,6 +101,11 @@ function Skills() {
       {loading ? (
         <div className="loading-spinner">
           <Spinner />
+        </div>
+      ) : !user ? (
+        <div className="no-auth">
+          <p>Please sign in to view your skills.</p>
+          <button onClick={() => { try { localStorage.removeItem('seenAnimatedLogin'); } catch(e){}; window.location.href = '/'; }}>Sign in</button>
         </div>
       ) : (
         <div className="skills-grid">

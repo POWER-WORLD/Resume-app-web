@@ -3,6 +3,7 @@ import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import "../assets/styles/About.css";
 import { getAllSkills } from "../services/skillService";
+import { useAuth } from "../context/AuthContext";
 import ContactForm from '../components/ContactForm';
 
 function About() {
@@ -11,10 +12,16 @@ function About() {
   const [error, setError] = useState(null);
   const [showContactForm, setShowContactForm] = useState(false);
 
+  const { user } = useAuth();
+
   useEffect(() => {
     const fetchSkills = async () => {
       try {
         setLoading(true);
+        if (!user) {
+          setSkills([]);
+          return;
+        }
         const response = await getAllSkills();
         const data = response.data || response;
         // Only take the first 3 skills
@@ -27,7 +34,7 @@ function About() {
     };
 
     fetchSkills();
-  }, []);
+  }, [user]);
 
   const handleContactSubmit = async (contactData) => {
     // TODO: Implement the API call to save contact data
@@ -134,6 +141,11 @@ function About() {
           <div className="skills-grid">
             {loading ? (
               <div className="loading-spinner">Loading skills...</div>
+            ) : !user ? (
+              <div className="no-auth">
+                <p>Please sign in to view skills.</p>
+                <button onClick={() => { try { localStorage.removeItem('seenAnimatedLogin'); } catch(e){}; window.location.href = '/'; }}>Sign in</button>
+              </div>
             ) : error ? (
               <div className="error-message">{error}</div>
             ) : (
