@@ -129,6 +129,9 @@ select option{
     opacity: 0;
     z-index: 1;
 }
+.sign-up h1{
+    color: #000;
+}
 
 .container.active .sign-up{
     transform: translateX(100%);
