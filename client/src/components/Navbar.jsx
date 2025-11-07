@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import logo from "../assets/images/nav_logo.png";
+// import logo from "../assets/images/nav_logo.png";
 import "../assets/styles/Navbar.css";
 import { useAuth } from "../context/AuthContext";
 
@@ -24,8 +24,8 @@ function Navbar({ isOpen = false, onClose = () => {} }) {
       aria-hidden={!isOpen && window.innerWidth < 1025}
     >
       <div className="logo">
-        <img src={logo} alt="logo" />
-        <h2>Portfolio</h2>
+        {/* <img src={logo} alt="logo" />
+        <h2>Portfolio</h2> */}
         <button className="close-btn" onClick={onClose} aria-label="Close menu">
           ✕
         </button>

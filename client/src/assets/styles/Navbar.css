@@ -142,6 +142,7 @@
 /* User area shown under logo */
 .nav-user-area{
   display:flex;
+  flex-direction: column;
   align-items:center;
   gap:10px;
   margin-bottom: 12px;
