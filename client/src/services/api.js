@@ -1,15 +1,15 @@
 import axios from "axios";
 
 // for server deployment
-// const api = axios.create({
-//   baseURL: "https://resume-app-webserver-production.up.railway.app/api", // backend base URL
-// });
+const api = axios.create({
+  baseURL: "https://resume-app-webserver-production.up.railway.app/api", // backend base URL
+});
 
 
 //for local development
-const api = axios.create({
-  baseURL: "http://localhost:5000/api", // backend base URL for local development
-});
+// const api = axios.create({
+//   baseURL: "http://localhost:5000/api", // backend base URL for local development
+// });
 
 
 
