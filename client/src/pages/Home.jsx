@@ -2,17 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FaProjectDiagram, FaUser, FaTools, FaBriefcase } from "react-icons/fa";
 import heroImg from "../assets/images/2471303.gif";
+import { useAuth } from "../context/AuthContext";
 // import logo from "../assets/images/nav_logo.png";
 import "../assets/styles/Home.css";
 
 function Home() {
+  const { user} = useAuth();
+
+
   return (
     <main className="home-page">
       <section className="hero">
         <div className="hero-left">
           {/* <img src={logo} alt="logo" className="hero-logo" /> */}
           <h1 className="hero-title">
-            Hi, I'm Pawan kumar — MERN Stack Developer
+            Hi, I'm {user.fullName} — MERN Stack Developer
           </h1>
           <p className="hero-sub">
             I build modern, performant web applications using MongoDB, Express,

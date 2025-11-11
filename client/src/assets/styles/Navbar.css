@@ -1,8 +1,8 @@
 /* Modern sidebar design */
 .sidebar {
   position: fixed;
-  left: 0;
-  top: 0;
+  /* left: 0;
+  top: 0; */
   width: 260px;
   height: 100vh;
   z-index: 1000;
@@ -12,9 +12,9 @@
   border-right: 1px solid rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(8px);
   color: #e8f6ff;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-between; */
   transition: transform 320ms cubic-bezier(.2, .9, .3, 1), box-shadow 320ms;
   transform: translateX(0);
   box-shadow: 8px 20px 40px rgba(3, 6, 18, 0.6);
@@ -39,7 +39,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 1.25rem;
+  /* margin-bottom: 1.25rem; */
   position: relative;
   justify-content: center;
 }
@@ -88,7 +88,6 @@
 .nav-links {
   list-style: none;
   padding: 0;
-  margin: 6px 0 0 0;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -145,7 +144,7 @@
   flex-direction: column;
   align-items:center;
   gap:10px;
-  margin-bottom: 12px;
+  margin: 50px 12px;
   justify-content: center;
 }
 .nav-user{

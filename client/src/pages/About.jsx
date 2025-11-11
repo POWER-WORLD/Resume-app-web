@@ -50,7 +50,7 @@ function About() {
             <h1 className="about-title">About Me</h1>
 
             <p className="about-text">
-              Hi! I'm [Your Name], a passionate full-stack developer with expertise in the MERN stack.
+              Hi! I'm {user.fullName}, a passionate full-stack developer with expertise in the MERN stack.
               I love building web applications that solve real-world problems and create meaningful experiences.
             </p>
 
