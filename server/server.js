@@ -14,12 +14,9 @@ const app = express();
 
 // enable CORS for all origins (for development purposes)
 app.use(cors({
-  origin: [
-    "https://resumeappfirstone.onrender.com", // ✅ Correct frontend domain
-    "http://localhost:5000" // Optional: local dev
-  ],
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
 }));
 
 //enable CORS for local development (allow all origins)
