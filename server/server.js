@@ -15,8 +15,8 @@ const app = express();
 // enable CORS for all origins (for development purposes)
 app.use(cors({
   origin: [
-    "https://resume-app-web-production-41d1.up.railway.app", // ✅ Correct frontend domain
-    "http://localhost:5173" // Optional: local dev
+    "https://resumeappfirstone.onrender.com", // ✅ Correct frontend domain
+    "http://localhost:5000" // Optional: local dev
   ],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
