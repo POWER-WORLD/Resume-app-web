@@ -41,7 +41,7 @@ function Projects() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [user]);
 
   // Add useEffect to fetch projects on component mount
   useEffect(() => {

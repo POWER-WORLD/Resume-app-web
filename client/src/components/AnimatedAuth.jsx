@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../assets/styles/animatedAuth.css';
 import { useAuth } from '../context/AuthContext';
+import { Link } from "react-router-dom";
 
 function AnimatedAuth({ onClose }) {
   const [active, setActive] = useState(false);
@@ -45,10 +46,10 @@ function AnimatedAuth({ onClose }) {
           <form onSubmit={handleRegister}>
             <h1>Create Account</h1>
             <div className="social-icons">
-              <a href="#" className="icon"><i className="fa-brands fa-google-plus-g"></i></a>
-              <a href="#" className="icon"><i className="fa-brands fa-facebook-f"></i></a>
-              <a href="#" className="icon"><i className="fa-brands fa-github"></i></a>
-              <a href="#" className="icon"><i className="fa-brands fa-linkedin-in"></i></a>
+              <Link to="/" className="icon"><i className="fa-brands fa-google-plus-g"></i></Link>
+              <Link to="/" className="icon"><i className="fa-brands fa-facebook-f"></i></Link>
+              <Link to="/" className="icon"><i className="fa-brands fa-github"></i></Link>
+              <Link to="/" className="icon"><i className="fa-brands fa-linkedin-in"></i></Link>
             </div>
             <span>or use your email for registration</span>
             <input value={signUpName} onChange={e => setSignUpName(e.target.value)} type="text" placeholder="Name" required />
@@ -68,15 +69,15 @@ function AnimatedAuth({ onClose }) {
           <form onSubmit={handleLogin}>
             <h1>Sign In</h1>
             <div className="social-icons">
-              <a href="#" className="icon"><i className="fa-brands fa-google-plus-g"></i></a>
-              <a href="#" className="icon"><i className="fa-brands fa-facebook-f"></i></a>
-              <a href="#" className="icon"><i className="fa-brands fa-github"></i></a>
-              <a href="#" className="icon"><i className="fa-brands fa-linkedin-in"></i></a>
+              <Link to="/" className="icon"><i className="fa-brands fa-google-plus-g"></i></Link>
+              <Link to="/" className="icon"><i className="fa-brands fa-facebook-f"></i></Link>
+              <Link to="/" className="icon"><i className="fa-brands fa-github"></i></Link>
+              <Link to="/" className="icon"><i className="fa-brands fa-linkedin-in"></i></Link>
             </div>
             <span>or use your email password</span>
             <input value={signInEmail} onChange={e => setSignInEmail(e.target.value)} type="email" placeholder="Email" required />
             <input value={signInPassword} onChange={e => setSignInPassword(e.target.value)} type="password" placeholder="Password" required />
-            <a href="#">Forget Your Password?</a>
+            <Link to="/">Forget Your Password?</Link>
             <button type="submit">Sign In</button>
           </form>
         </div>
