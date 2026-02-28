@@ -20,8 +20,6 @@ A full-stack web application to create, manage, and showcase professional resume
 
 ![Screenshot 7](client/public/screenshots/Screenshot%202025-10-27%20220113.png)
 
-![Screenshot 8](client/public/screenshots/Screenshot%202025-10-31%20175839.png)
-
 ---
 
 ## 🚀 Getting Started
